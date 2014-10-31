@@ -5,10 +5,15 @@ define nagios::resource (
   $resource_hash,
 ) {
 
-  create_resources($type, { "${name}" => $resource_hash[$name] } )
+  $resource_name = delete($type, 'nagios_')
+  $target_name = uriescape(strip($name))
+  $target = "${::nagios::params::nagios_resource_dir}/${resource_name}/${target_name}.cfg"
 
-  if !defined(File[$resource_hash[$name]['target']]) {
-    file { $resource_hash[$name]['target']:
+  # XXX: the string with a variable inside is needed otherwise puppet fails
+  create_resources($type, { "${name}" =>  $resource_hash[$name] }, { 'target' => $target } )
+
+  if !defined(File[$target]) {
+    file { $target:
       ensure => present,
       mode   => '0644',
       owner  => 'nagios',
