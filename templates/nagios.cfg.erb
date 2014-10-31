@@ -70,7 +70,7 @@ object_cache_file=<%= @nagios_cache_dir %>/objects.cache
 # Read the documentation section on optimizing Nagios to find our more
 # about how this feature works.
 
-precached_object_file=<%= @nagios_lib_dir %>/objects.precache
+precached_object_file=<%= @nagios_varlib_dir %>/objects.precache
 
 
 
@@ -160,7 +160,7 @@ command_check_interval=-1
 # directory level instead of on the file, as the file is deleted every
 # time its contents are processed.
 
-command_file=<%= @nagios_lib_dir %>/rw/nagios.cmd
+command_file=<%= @nagios_varlib_dir %>/rw/nagios.cmd
 
 
 
@@ -630,7 +630,7 @@ retain_state_information=1
 # This file is used only if the preserve_state_information
 # variable is set to 1.
 
-state_retention_file=<%= @nagios_lib_dir %>/retention.dat
+state_retention_file=<%= @nagios_varlib_dir %>/retention.dat
 
 
 

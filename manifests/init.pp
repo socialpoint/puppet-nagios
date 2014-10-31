@@ -9,6 +9,7 @@ class nagios (
   $nagios_log_dir = $::nagios::params::nagios_log_dir,
   $nagios_cache_dir = $::nagios::params::nagios_cache_dir,
   $nagios_lib_dir = $::nagios::params::nagios_lib_dir,
+  $nagios_varlib_dir = $::nagios::params::nagios_varlib_dir,
   $nagios_run_dir = $::nagios::params::nagios_run_dir,
   $nagios_spool_dir = $::nagios::params::nagios_spool_dir,
   $nagios_htdocs_dir = $::nagios::params::nagios_htdocs_dir,
@@ -20,6 +21,7 @@ class nagios (
   $default_hostgroups = $::nagios::params::default_hostgroups,
   $default_services = $::nagios::params::default_services,
   $default_timeperiods = $::nagios::params::default_timeperiods,
+  $default_commands = $::nagios::params::default_commands,
 
   $collect_exported_resources = true,
   $exported_resources_tag = undef,
@@ -178,5 +180,6 @@ class nagios (
   nagios::resource_hash::service { $default_services: }
   nagios::resource_hash::hostgroup { $default_hostgroups: }
   nagios::resource_hash::timeperiod { $default_timeperiods: }
+  nagios::resource_hash::command { $default_commands: }
 
 }
