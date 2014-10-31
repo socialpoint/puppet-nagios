@@ -172,11 +172,11 @@ class nagios (
 
   ### Default configuration
 
-  nagios::resource::contact { $default_contacts: }
-  nagios::resource::contactgroup { $default_contactgroups: }
-  nagios::resource::host { $default_hosts: }
-  nagios::resource::service { $default_services: }
-  nagios::resource::hostgroup { $default_hostgroups: }
-  nagios::resource::timeperiod { $default_timeperiods: }
+  nagios::resource_hash::contact { $default_contacts: }
+  nagios::resource_hash::contactgroup { $default_contactgroups: }
+  nagios::resource_hash::host { $default_hosts: }
+  nagios::resource_hash::service { $default_services: }
+  nagios::resource_hash::hostgroup { $default_hostgroups: }
+  nagios::resource_hash::timeperiod { $default_timeperiods: }
 
 }

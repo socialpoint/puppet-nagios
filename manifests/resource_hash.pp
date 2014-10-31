@@ -1,6 +1,6 @@
 # Low level defined resource
 # TODO: Document
-define nagios::resource (
+define nagios::resource_hash (
   $type,
   $resource_hash,
 ) {
