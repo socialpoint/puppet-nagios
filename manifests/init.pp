@@ -41,19 +41,19 @@ class nagios (
   }
 
   ### Exported resources
-
+  # XXX: This ugly if is needed because Puppet does not realise the resources
+  # with no tag otherwise
   if $collect_exported_resources {
-    Nagios_servicedependency <<| tag == $exported_resources_tag |>> {
-      notify  => Service[$nagios_service],
-      require => Package[$nagios_package_name],
-    }
-    Nagios_service <<| tag == $exported_resources_tag |>> {
-      notify  => Service[$nagios_service],
-      require => Package[$nagios_package_name],
-    }
-    Nagios_host <<| tag == $exported_resources_tag |>> {
-      notify  => Service[$nagios_service],
-      require => Package[$nagios_package_name],
+    if $exported_resources_tag {
+      Nagios::Resource <<| tag == $exported_resources_tag |>> {
+        notify  => Service[$nagios_service],
+        require => Package[$nagios_package_name],
+      }
+    } else {
+      Nagios::Resource <<| |>> {
+        notify  => Service[$nagios_service],
+        require => Package[$nagios_package_name],
+      }
     }
   }
 
@@ -146,6 +146,7 @@ class nagios (
     purge   => true,
     recurse => true,
     require => Package[$nagios_package_name],
+    notify  => Service[$nagios_service],
   }
 
   $cfg_dirs = union($extra_cfg_dirs, $::nagios::params::cfg_dirs)
