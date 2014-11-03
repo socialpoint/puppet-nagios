@@ -2,6 +2,9 @@ class nagios::params {
 
   $nagios_version = 'present'
   $broker_modules = []
+  $manage_htpasswd = true
+  $authorized_for_all_services = '*'
+  $authorized_for_all_hosts = '*'
 
   if $::operatingsystem == 'Ubuntu' {
     $nagios_package_name = 'nagios3'
@@ -16,7 +19,11 @@ class nagios::params {
     $nagios_run_dir = '/var/run/nagios3'
     $nagios_spool_dir = "${nagios_varlib_dir}/spool"
     $nagios_htdocs_dir = '/usr/share/nagios3/htdocs'
+    $nagios_stylesheets_dir = "${nagios_dir}/stylesheets"
+    $nagios_cgi_dir = '/usr/lib/cgi-bin/nagios3'
     $plugins_dir = '/usr/lib/nagios/plugins'
+    $htpasswd_file = "${nagios_dir}/htpasswd.users"
+    $html_dir = '/nagios3'
 
     $cfg_files = [ ]
     $cfg_dirs = [ $nagios_resource_dir ]

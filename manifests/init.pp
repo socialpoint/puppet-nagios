@@ -14,6 +14,10 @@ class nagios (
   $nagios_spool_dir = $::nagios::params::nagios_spool_dir,
   $nagios_htdocs_dir = $::nagios::params::nagios_htdocs_dir,
   $plugins_dir = $::nagios::params::plugins_dir,
+  $authorized_for_all_services = $::nagios::params::authorized_for_all_services,
+  $authorized_for_all_hosts = $::nagios::params::authorized_for_all_hosts,
+  $manage_htpasswd = $::nagios::params::manage_htpasswd,
+  $htpasswd_file = $::nagios::params::htpasswd_file,
 
   $default_contacts = $::nagios::params::default_contacts,
   $default_contactgroups = $::nagios::params::default_contactgroups,
@@ -170,6 +174,15 @@ class nagios (
     content => template('nagios/cgi.cfg.erb'),
     require => Package[$nagios_package_name],
     notify  => Service[$nagios_service],
+  }
+
+  if $manage_htpasswd {
+    file { $htpasswd_file:
+      ensure => present,
+      owner  => 'nagios',
+      group  => 'nagios',
+      mode   => '0644',
+    }
   }
 
 
