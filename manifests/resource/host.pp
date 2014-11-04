@@ -32,7 +32,7 @@ define nagios::resource::host (
   $max_check_attempts = undef,
   $mode = undef,
   $notes = "<table><tr><th>OS</th><td>${::operatingsystem} ${::operatingsystemrelease}</td></tr><tr><th>CPU</th><td>${::physicalprocessorcount} x ${::processor0}</td></tr><tr><th>Architecture</th><td>${::architecture}</td></tr><tr><th>Kernel</th><td>${::kernelrelease}</td></tr><tr><th>Memory</th><td>${::memorysize}</td></tr><tr><th>Swap</th><td>${::swapsize}</td></tr></table>",
-  $notes_url = "/nagios/cgi-bin/status.cgi?host=${title}",
+  $notes_url = undef,
   $notification_interval = undef,
   $notification_options = undef,
   $notification_period = undef,
