@@ -1,5 +1,7 @@
 class nagios::apache (
   $vhost_name = 'nagios',
+  $servername = undef,
+  $serveraliases = undef,
   $port = '80',
   $priority = undef,
   $docroot = $nagios::params::nagios_htdocs_dir,
@@ -14,8 +16,20 @@ class nagios::apache (
 
   $aliases = [
     {
+      alias => '/stylesheets',
+      path  => $nagios_stylesheets_dir,
+    },
+    {
       alias => "${html_dir}/stylesheets",
       path  => $nagios_stylesheets_dir,
+    },
+    {
+      alias => "/nagios/stylesheets",
+      path  => $nagios_stylesheets_dir,
+    },
+    {
+      alias => '/nagios',
+      path  => $nagios_htdocs_dir,
     },
     {
       alias => $html_dir,
@@ -68,6 +82,8 @@ class nagios::apache (
   }
 
   ::apache::vhost { $vhost_name:
+    servername      => $servername,
+    serveraliases   => $serveraliases,
     port            => $port,
     priority        => $priority,
     docroot         => $docroot,
