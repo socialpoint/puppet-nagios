@@ -2,6 +2,10 @@ define nagios::resource::service (
   $check_command,
   $ensure = 'present',
   $exported = false,
+  $nrpe = false,
+  $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
+  $nrpe_service = $::nagios::params::nrpe_service,
+  $plugins_dir = $::nagios::params::plugins_dir,
   $host_name = $::fqdn,
   $use = 'generic-service',
   $action_url = undef,
@@ -52,8 +56,14 @@ define nagios::resource::service (
   $service_description = undef,
   $servicegroups = undef,
   $stalking_options = undef,
-  $target = undef,
 ) {
+
+  $check_command_name = split($check_command, '[\!\ ]')
+
+  $real_check_command = $nrpe ? {
+    true    => "check_nrpe!${check_command_name[0]}",
+    default => $check_command,
+  }
 
   $resource_hash = {
     "${name}"                        => {
@@ -61,7 +71,7 @@ define nagios::resource::service (
       'action_url'                   => $action_url,
       'active_checks_enabled'        => $active_checks_enabled,
       'business_impact'              => $business_impact,
-      'check_command'                => $check_command,
+      'check_command'                => $real_check_command,
       'check_freshness'              => $check_freshness,
       'check_interval'               => $check_interval,
       'check_period'                 => $check_period,
@@ -122,6 +132,15 @@ define nagios::resource::service (
     nagios::resource { $name:
       type          => 'nagios_service',
       resource_hash => $resource_hash,
+    }
+  }
+
+
+  if $nrpe {
+    file { "${nrpe_config_dir}/${name}.cfg":
+      ensure  => present,
+      content => "command[${check_command_name[0]}]=${plugins_dir}/$check_command\n",
+      notify  => Service[$nrpe_service],
     }
   }
 

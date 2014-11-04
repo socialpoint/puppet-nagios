@@ -6,6 +6,8 @@ class nagios::params {
   $authorized_for_all_services = '*'
   $authorized_for_all_hosts = '*'
 
+  $nrpe_port = '5666'
+
   if $::operatingsystem == 'Ubuntu' {
     $nagios_package_name = 'nagios3'
     $nagios_service = 'nagios3'
@@ -24,6 +26,18 @@ class nagios::params {
     $plugins_dir = '/usr/lib/nagios/plugins'
     $htpasswd_file = "${nagios_dir}/htpasswd.users"
     $html_dir = '/nagios3'
+
+    $nrpe_package = 'nagios-nrpe-server'
+    $nrpe_service = 'nagios-nrpe-server'
+    $nrpe_dir = '/etc/nagios'
+    $nrpe_config_dir = "${nrpe_dir}/nrpe.d"
+
+    $plugins_packages = [
+                          'nagios-plugins',
+                          'nagios-plugins-basic',
+                          'nagios-plugins-contrib',
+                          'nagios-nrpe-plugin',
+                        ]
 
     $cfg_files = [ ]
     $cfg_dirs = [ $nagios_resource_dir ]
@@ -213,6 +227,9 @@ class nagios::params {
     },
     'process-service-perfdata' => {
       'command_line' => '/usr/bin/printf "%b" "$LASTSERVICECHECK$\t$HOSTNAME$\t$SERVICEDESC$\t$SERVICESTATE$\t$SERVICEATTEMPT$\t$SERVICESTATETYPE$\t$SERVICEEXECUTIONTIME$\t$SERVICELATENCY$\t$SERVICEOUTPUT$\t$SERVICEPERFDATA$\n" >> @localstatedir@/service-perfdata.out',
+    },
+    'check_nrpe'     => {
+      'command_line' => '$USER1$/check_nrpe -H $HOSTADDRESS$ -t 60 -c $ARG1$',
     },
   }
 
