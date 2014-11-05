@@ -3,13 +3,15 @@ class nagios::params {
   $nagios_version = 'present'
   $broker_modules = []
   $manage_htpasswd = true
-  $authorized_for_all_services = '*'
-  $authorized_for_all_hosts = '*'
+  $authorized_for_all_services = 'nagiosadmin'
+  $authorized_for_all_hosts = 'nagiosadmin'
 
   $nrpe_port = '5666'
 
   if $::operatingsystem == 'Ubuntu' {
     $nagios_package_name = 'nagios3'
+    $apache_user = 'www-data'
+    $apache_service = 'apache2'
     $nagios_service = 'nagios3'
     $nagios_dir = '/etc/nagios3'
     $nagios_command = '/usr/sbin/nagios3'
@@ -23,6 +25,7 @@ class nagios::params {
     $nagios_htdocs_dir = '/usr/share/nagios3/htdocs'
     $nagios_stylesheets_dir = "${nagios_dir}/stylesheets"
     $nagios_cgi_dir = '/usr/lib/cgi-bin/nagios3'
+    $nagios_external_cmd_dir = "${nagios_varlib_dir}/rw"
     $plugins_dir = '/usr/lib/nagios/plugins'
     $htpasswd_file = "${nagios_dir}/htpasswd.users"
     $html_dir = '/nagios3'

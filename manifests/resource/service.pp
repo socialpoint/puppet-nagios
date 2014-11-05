@@ -139,7 +139,7 @@ define nagios::resource::service (
   if $nrpe {
     file { "${nrpe_config_dir}/${name}.cfg":
       ensure  => present,
-      content => "command[${check_command_name[0]}]=${plugins_dir}/$check_command\n",
+      content => "command[${check_command_name[0]}]=${plugins_dir}/${check_command}\n",
       notify  => Service[$nrpe_service],
     }
   }

@@ -2,6 +2,7 @@ class nagios (
   $nagios_package_name = $::nagios::params::nagios_package_name,
   $nagios_version = $::nagios::params::nagios_version,
   $nagios_service = $::nagios::params::nagios_service,
+  $apache_user = $::nagios::params::apache_user,
 
   $nagios_dir = $::nagios::params::nagios_dir,
   $nagios_command = $::nagios::params::nagios_command,
@@ -13,6 +14,7 @@ class nagios (
   $nagios_run_dir = $::nagios::params::nagios_run_dir,
   $nagios_spool_dir = $::nagios::params::nagios_spool_dir,
   $nagios_htdocs_dir = $::nagios::params::nagios_htdocs_dir,
+  $nagios_external_cmd_dir = $::nagios::params::nagios_external_cmd_dir,
   $plugins_dir = $::nagios::params::plugins_dir,
   $authorized_for_all_services = $::nagios::params::authorized_for_all_services,
   $authorized_for_all_hosts = $::nagios::params::authorized_for_all_hosts,
@@ -174,6 +176,14 @@ class nagios (
     content => template('nagios/cgi.cfg.erb'),
     require => Package[$nagios_package_name],
     notify  => Service[$nagios_service],
+  }
+
+  file { $nagios_external_cmd_dir:
+    ensure  => directory,
+    owner   => 'nagios',
+    group   => $apache_user,
+    mode    => '0770',
+    require => Package[$nagios_package_name],
   }
 
   if $manage_htpasswd {
