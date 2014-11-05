@@ -12,17 +12,17 @@ define nagios::resource::contactgroup (
 ) {
 
   $resource_hash = {
-    "${name}"                        => {
-      'ensure' => $ensure,
-      'alias' => $alias,
+    "${name}"                => {
+      'ensure'               => $ensure,
+      'alias'                => $alias,
       'contactgroup_members' => $contactgroup_members,
-      'group' => $group,
-      'members' => $members,
-      'mode' => $mode,
-      'owner' => $owner,
-      'provider' => $provider,
-      'register' => $register,
-      'use' => $use,
+      'group'                => $group,
+      'members'              => $members,
+      'mode'                 => $mode,
+      'owner'                => $owner,
+      'provider'             => $provider,
+      'register'             => $register,
+      'use'                  => $use,
     }
   }
 
