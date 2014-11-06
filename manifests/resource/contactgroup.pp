@@ -6,7 +6,6 @@ define nagios::resource::contactgroup (
   $members = undef,
   $mode = undef,
   $owner = undef,
-  $provider = undef,
   $register = undef,
   $use = undef,
 ) {
@@ -20,7 +19,6 @@ define nagios::resource::contactgroup (
       'members'              => $members,
       'mode'                 => $mode,
       'owner'                => $owner,
-      'provider'             => $provider,
       'register'             => $register,
       'use'                  => $use,
     }
