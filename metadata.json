@@ -1,0 +1,23 @@
+{
+  "name": "socialpoint-nagios",
+  "version": "0.0.1",
+  "author": "Carles Amigó",
+  "license": "Licensed under (Apache 2.0)",
+  "summary": "A module for managing Nagios",
+  "source": "https://github.com/socialpoint/puppet-nagios",
+  "project_page": "https://github.com/socialpoint/puppet-nagios",
+  "issues_url": "https://github.com/socialpoint/puppet-nagios/issues",
+  "tags": ["nagios", "monitoring"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "14.04" ]
+    }
+   ]
+  "dependencies": [
+    { "name": "puppetlabs/ini_file", "version_requirement": ">=1.1.4" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.3.2" },
+    { "name": "leinaddm/htpasswd", "version_requirement": ">=0.0.3" }
+    { "name": "puppetlabs/apache", "version_requirement": ">=1.1.1" }
+  ]
+}
