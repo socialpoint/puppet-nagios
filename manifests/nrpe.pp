@@ -5,7 +5,7 @@ class nagios::nrpe (
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
   $port = $::nagios::params::nrpe_port,
   $allowed_hosts = '127.0.0.1',
-) {
+) inherits nagios::params {
 
   package { $nrpe_package:
     ensure => installed,

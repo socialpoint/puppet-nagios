@@ -14,7 +14,7 @@ class nagios::apache (
   $nagios_htdocs_dir = $nagios::params::nagios_htdocs_dir,
   $nagios_cgi_dir = $nagios::params::nagios_cgi_dir,
   $only_vhost = false,
-) {
+) inherits nagios::params {
 
   $aliases = [
     {
