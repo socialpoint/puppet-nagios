@@ -11,7 +11,7 @@ define nagios::resource (
 
   # XXX: when an exported resource has an undef value, it gets realised as
   # undef string. We need to delete those entries before realising them
-  $real_resource_hash = delete_values($resource_hash[$name], 'undef')
+  $real_resource_hash = delete_values($resource_hash[$name], undef)
 
   # XXX: the string with a variable inside is needed otherwise puppet fails
   create_resources($type, { "${name}" =>  $real_resource_hash }, {
