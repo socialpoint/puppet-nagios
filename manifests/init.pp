@@ -149,6 +149,9 @@ class nagios (
           "${nagios_resource_dir}/timeperiod",
         ]:
     ensure  => directory,
+    owner   => 'nagios',
+    group   => 'nagios',
+    mode    => '0755',
     purge   => true,
     recurse => true,
     require => Package[$nagios_package_name],
