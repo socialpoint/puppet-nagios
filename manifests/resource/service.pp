@@ -137,6 +137,9 @@ define nagios::resource::service (
   if $nrpe {
     file { "${nrpe_config_dir}/${name}.cfg":
       ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
       content => "command[${check_command_name[0]}]=${plugins_dir}/${check_command}\n",
       notify  => Service[$nrpe_service],
     }
