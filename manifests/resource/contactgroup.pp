@@ -1,6 +1,6 @@
 define nagios::resource::contactgroup (
   $ensure = 'present',
-  $alias = undef,
+  $contacgroup_alias = undef,
   $contactgroup_members = undef,
   $group = undef,
   $members = undef,
@@ -13,7 +13,7 @@ define nagios::resource::contactgroup (
   $resource_hash = {
     "${name}"                => {
       'ensure'               => $ensure,
-      'alias'                => $alias,
+      'alias'                => $contacgroup_alias,
       'contactgroup_members' => $contactgroup_members,
       'group'                => $group,
       'members'              => $members,

@@ -1,6 +1,6 @@
 define nagios::resource::timeperiod (
   $ensure = 'present',
-  $alias = undef,
+  $timeperiod_alias = undef,
   $exclude = undef,
   $group = undef,
   $mode = undef,
@@ -19,7 +19,7 @@ define nagios::resource::timeperiod (
   $resource_hash = {
     "${name}"     => {
       'ensure'    => $ensure,
-      'alias'     => $alias,
+      'alias'     => $timeperiod_alias,
       'exclude'   => $exclude,
       'group'     => $group,
       'mode'      => $mode,
