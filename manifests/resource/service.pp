@@ -144,6 +144,9 @@ define nagios::resource::service (
       }
     } else {
       $sudo_command = ''
+        sudo::conf { "nrpe-${name}":
+          ensure => absent,
+        }
     }
 
     file { "${nrpe_config_dir}/${name}.cfg":
