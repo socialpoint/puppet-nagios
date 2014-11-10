@@ -1,6 +1,6 @@
 define nagios::resource::service (
-  $check_command = undef,
   $ensure = 'present',
+  $check_command = undef,
   $exported = false,
   $nrpe = false,
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
