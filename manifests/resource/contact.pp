@@ -31,36 +31,37 @@ define nagios::resource::contact (
   $use = undef,
 ) {
 
-  $resource_hash = {
-    "${name}"                         => {
-      'ensure'                        => $ensure,
-      'address1'                      => $address1,
-      'address2'                      => $address2,
-      'address3'                      => $address3,
-      'address4'                      => $address4,
-      'address5'                      => $address5,
-      'address6'                      => $address6,
-      'alias'                         => $contact_alias,
-      'can_submit_commands'           => $can_submit_commands,
-      'contactgroups'                 => $contactgroups,
-      'email'                         => $email,
-      'group'                         => $group,
-      'host_notification_commands'    => $host_notification_commands,
-      'host_notification_options'     => $host_notification_options,
-      'host_notification_period'      => $host_notification_period,
-      'host_notifications_enabled'    => $host_notifications_enabled,
-      'owner'                         => $owner,
-      'pager'                         => $pager,
-      'register'                      => $register,
-      'retain_nonstatus_information'  => $retain_nonstatus_information,
-      'retain_status_information'     => $retain_status_information,
-      'service_notification_commands' => $service_notification_commands,
-      'service_notification_options'  => $service_notification_options,
-      'service_notification_period'   => $service_notification_period,
-      'service_notifications_enabled' => $service_notifications_enabled,
-      'use'                           => $use,
-    }
-  }
+  # XXX: when an exported resource has an undef value, it gets realised as
+  # undef string. We need to delete those entries before realising them
+  $resource_values = delete_undef_values( {
+    'ensure'                        => $ensure,
+    'address1'                      => $address1,
+    'address2'                      => $address2,
+    'address3'                      => $address3,
+    'address4'                      => $address4,
+    'address5'                      => $address5,
+    'address6'                      => $address6,
+    'alias'                         => $contact_alias,
+    'can_submit_commands'           => $can_submit_commands,
+    'contactgroups'                 => $contactgroups,
+    'email'                         => $email,
+    'group'                         => $group,
+    'host_notification_commands'    => $host_notification_commands,
+    'host_notification_options'     => $host_notification_options,
+    'host_notification_period'      => $host_notification_period,
+    'host_notifications_enabled'    => $host_notifications_enabled,
+    'owner'                         => $owner,
+    'pager'                         => $pager,
+    'register'                      => $register,
+    'retain_nonstatus_information'  => $retain_nonstatus_information,
+    'retain_status_information'     => $retain_status_information,
+    'service_notification_commands' => $service_notification_commands,
+    'service_notification_options'  => $service_notification_options,
+    'service_notification_period'   => $service_notification_period,
+    'service_notifications_enabled' => $service_notifications_enabled,
+    'use'                           => $use,
+  })
+  $resource_hash = { "${name}" => $resource_values }
 
   if $exported {
     @@nagios::resource { $name:

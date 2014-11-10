@@ -9,12 +9,8 @@ define nagios::resource (
   $target_name = uriescape(strip($name))
   $target = "${::nagios::params::nagios_resource_dir}/${resource_name}/${target_name}.cfg"
 
-  # XXX: when an exported resource has an undef value, it gets realised as
-  # undef string. We need to delete those entries before realising them
-  $real_resource_hash = delete_undef_values($resource_hash[$name])
-
   # XXX: the string with a variable inside is needed otherwise puppet fails
-  create_resources($type, { "${name}" =>  $real_resource_hash }, {
+  create_resources($type, { "${name}" =>  $resource_hash[$name] }, {
     'target'  => $target,
     'require' => "File[${target}]",
     'notify'  => "Service[${::nagios::params::nagios_service}]",
