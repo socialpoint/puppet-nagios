@@ -5,6 +5,7 @@ define nagios::resource::service (
   $nrpe = false,
   $sudo = false,
   $manage_sudo = true,
+  $check_script_content = undef,
   $nrpe_user = $::nagios::params::nrpe_user,
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
   $nrpe_service = $::nagios::params::nrpe_service,
@@ -131,6 +132,16 @@ define nagios::resource::service (
     nagios::resource { $name:
       type          => 'nagios_service',
       resource_hash => $resource_hash,
+    }
+  }
+
+  if $check_script_content {
+    file { "${plugins_dir}/${check_command_name[0]}":
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => $check_script_content,
     }
   }
 
