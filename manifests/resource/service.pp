@@ -3,7 +3,7 @@ define nagios::resource::service (
   $check_command = undef,
   $exported = false,
   $nrpe = false,
-  $nrpe_sudo = false,
+  $sudo = false,
   $manage_sudo = true,
   $nrpe_user = $::nagios::params::nrpe_user,
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
@@ -135,7 +135,7 @@ define nagios::resource::service (
   }
 
   if $nrpe {
-    if $nrpe_sudo {
+    if $sudo {
       $sudo_command = 'sudo '
       if $manage_sudo {
         sudo::conf { "nrpe-${name}":
