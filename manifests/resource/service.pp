@@ -136,7 +136,7 @@ define nagios::resource::service (
 
   if $nrpe {
     if $sudo {
-      $sudo_command = 'sudo '
+      $sudo_command = '/usr/bin/sudo '
       if $manage_sudo {
         sudo::conf { "nrpe-${name}":
           content => "${nrpe_user} ALL=(ALL:ALL) NOPASSWD:${plugins_dir}/${check_command_name}",
