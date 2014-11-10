@@ -11,6 +11,7 @@ class nagios::params {
   if $::operatingsystem == 'Ubuntu' {
     $nagios_package_name = 'nagios3'
     $apache_user = 'www-data'
+    $nrpe_user = 'nagios'
     $apache_service = 'apache2'
     $nagios_service = 'nagios3'
     $nagios_dir = '/etc/nagios3'

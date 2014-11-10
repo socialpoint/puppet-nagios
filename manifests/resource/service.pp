@@ -3,6 +3,9 @@ define nagios::resource::service (
   $check_command = undef,
   $exported = false,
   $nrpe = false,
+  $nrpe_sudo = false,
+  $manage_sudo = true,
+  $nrpe_user = $::nagios::params::nrpe_user,
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
   $nrpe_service = $::nagios::params::nrpe_service,
   $plugins_dir = $::nagios::params::plugins_dir,
@@ -132,12 +135,23 @@ define nagios::resource::service (
   }
 
   if $nrpe {
+    if $nrpe_sudo {
+      $sudo_command = 'sudo '
+      if $manage_sudo {
+        sudo::conf { "nrpe-${name}":
+          content => "${nrpe_user} ALL=(ALL:ALL) NOPASSWD:${plugins_dir}/${check_command_name}",
+        }
+      }
+    } else {
+      $sudo_command = ''
+    }
+
     file { "${nrpe_config_dir}/${name}.cfg":
       ensure  => present,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => "command[${check_command_name[0]}]=${plugins_dir}/${check_command}\n",
+      content => "command[${check_command_name[0]}]=${sudo_command}${plugins_dir}/${check_command}\n",
       notify  => Service[$nrpe_service],
     }
   }
