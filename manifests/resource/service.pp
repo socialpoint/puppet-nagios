@@ -9,6 +9,7 @@ define nagios::resource::service (
   $nrpe_user = $::nagios::params::nrpe_user,
   $nrpe_config_dir = $::nagios::params::nrpe_config_dir,
   $nrpe_service = $::nagios::params::nrpe_service,
+  $nrpe_package = $::nagios::params::nrpe_package,
   $plugins_dir = $::nagios::params::plugins_dir,
   $host_name = undef,
   $use = undef,
@@ -166,6 +167,7 @@ define nagios::resource::service (
       group   => 'root',
       mode    => '0644',
       content => "command[${check_command_name[0]}]=${sudo_command}${plugins_dir}/${check_command}\n",
+      require => Package[$nrpe_package],
       notify  => Service[$nrpe_service],
     }
   }
