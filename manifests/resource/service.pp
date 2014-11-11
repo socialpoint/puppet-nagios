@@ -143,6 +143,7 @@ define nagios::resource::service (
       group   => 'root',
       mode    => '0755',
       content => $check_script_content,
+      require => Package[$nrpe_package],
     }
   }
 
