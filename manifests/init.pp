@@ -43,6 +43,7 @@ class nagios (
   service { $nagios_service:
     ensure  => running,
     enable  => true,
+    restart => "service ${nagios_service} reload",
     require => Package[$nagios_package_name],
   }
 
