@@ -30,6 +30,9 @@ class nagios (
   $default_commands = $::nagios::params::default_commands,
 
   $collect_exported_resources = true,
+  $process_performance_data = '0',
+  $host_perfdata_command = undef,
+  $service_perfdata_command = undef,
   $exported_resources_tag = undef,
   $extra_cfg_files = [],
   $extra_cfg_dirs = [],
