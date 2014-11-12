@@ -50,7 +50,6 @@ define nagios::resource::host (
   $stalking_options = undef,
   $statusmap_image = undef,
   $vrml_image = undef,
-  $tag = undef,
 ) {
 
   # XXX: when an exported resource has an undef value, it gets realised as
