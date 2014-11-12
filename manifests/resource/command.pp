@@ -1,4 +1,4 @@
-define puppet-nagios::resource::command (
+define nagios::resource::command (
   $ensure = 'present',
   $command_line = undef,
   $poller_tag = undef,
