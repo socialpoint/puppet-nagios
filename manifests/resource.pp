@@ -5,9 +5,9 @@ define nagios::resource (
   $resource_hash,
 ) {
 
-  $resource_name = delete($type, 'nagios_')
+  $resourcetype_name = delete($type, 'nagios_')
   $target_name = uriescape(strip($name))
-  $target = "${::nagios::params::nagios_resource_dir}/${resource_name}/${target_name}.cfg"
+  $target = "${::nagios::params::nagios_resource_dir}/${resourcetype_name}/${target_name}.cfg"
 
   # XXX: the string with a variable inside is needed otherwise puppet fails
   create_resources($type, { "${name}" =>  $resource_hash[$name] }, {
