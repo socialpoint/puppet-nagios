@@ -167,7 +167,7 @@ define nagios::resource::service (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => "command\[${name}]=${sudo_command}${plugins_dir}/${check_command}\n",
+      content => "command[${name}]=${sudo_command}${plugins_dir}/${check_command}\n",
       require => Package[$nrpe_package],
       notify  => Service[$nrpe_service],
     }
