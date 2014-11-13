@@ -11,10 +11,10 @@ define nagios::resource::servicegroup (
 ) {
 
   $resource_hash = {
-    "servicegroup-${name}"                => {
+    "servicegroup-${name}"   => {
       'ensure'               => $ensure,
       'action_url'           => $action_url,
-      'servicegroup_alias'   => $servicegroup_alias,
+      'alias'                => $servicegroup_alias,
       'members'              => $members,
       'notes'                => $notes,
       'notes_url'            => $notes_url,
