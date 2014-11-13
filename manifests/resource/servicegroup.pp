@@ -1,7 +1,7 @@
 define puppet-nagios::resource::servicegroup (
   $ensure = 'present',
   $action_url = undef,
-  $alias = undef,
+  $servicegroup_alias = undef,
   $members = undef,
   $notes = undef,
   $notes_url = undef,
@@ -14,7 +14,7 @@ define puppet-nagios::resource::servicegroup (
     "${name}"                => {
       'ensure'               => $ensure,
       'action_url'           => $action_url,
-      'alias'                => $alias,
+      'servicegroup_alias'   => $servicegroup_alias,
       'members'              => $members,
       'notes'                => $notes,
       'notes_url'            => $notes_url,
