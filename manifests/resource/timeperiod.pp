@@ -34,7 +34,7 @@ define nagios::resource::timeperiod (
     }
   }
 
-  nagios::resource { $name:
+  nagios::resource { "timeperiod-${name}":
     type          => 'nagios_timeperiod',
     resource_hash => $resource_hash,
   }

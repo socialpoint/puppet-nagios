@@ -15,7 +15,7 @@ define nagios::resource::command (
     }
   }
 
-  nagios::resource { $name:
+  nagios::resource { "command-${name}":
     type          => 'nagios_command',
     resource_hash => $resource_hash,
   }

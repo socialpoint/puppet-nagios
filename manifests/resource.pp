@@ -10,7 +10,7 @@ define nagios::resource (
   $target = "${::nagios::params::nagios_resource_dir}/${resource_name}/${target_name}.cfg"
 
   # XXX: the string with a variable inside is needed otherwise puppet fails
-  create_resources($type, { "${type}-${name}" =>  $resource_hash[$name] }, {
+  create_resources($type, { "${name}" =>  $resource_hash[$name] }, {
     'target'  => $target,
     'require' => "File[${target}]",
     'notify'  => "Service[${::nagios::params::nagios_service}]",

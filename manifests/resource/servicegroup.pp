@@ -25,7 +25,7 @@ define nagios::resource::servicegroup (
     }
   }
 
-  nagios::resource { $name:
+  nagios::resource { "servicegroup-${name}":
     type          => 'nagios_servicegroup',
     resource_hash => $resource_hash,
   }

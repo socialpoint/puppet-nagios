@@ -22,7 +22,7 @@ define nagios::resource::contactgroup (
     }
   }
 
-  nagios::resource { $name:
+  nagios::resource { "contactgroup-${name}":
     type          => 'nagios_contactgroup',
     resource_hash => $resource_hash,
   }

@@ -64,12 +64,12 @@ define nagios::resource::contact (
   $resource_hash = { "${name}" => $resource_values }
 
   if $exported {
-    @@nagios::resource { $name:
+    @@nagios::resource { "contact-${name}":
       type          => 'nagios_contact',
       resource_hash => $resource_hash,
     }
   } else {
-    nagios::resource { $name:
+    nagios::resource { "contact-${name}":
       type          => 'nagios_contact',
       resource_hash => $resource_hash,
     }
