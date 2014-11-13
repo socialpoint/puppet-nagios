@@ -1,4 +1,4 @@
-define puppet-nagios::resource::servicegroup (
+define nagios::resource::servicegroup (
   $ensure = 'present',
   $action_url = undef,
   $servicegroup_alias = undef,
