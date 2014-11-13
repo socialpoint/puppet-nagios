@@ -1,3 +1,4 @@
+include nagios::params
 nagios::resource::service { 'generic-service':
   active_checks_enabled        => '1',
   passive_checks_enabled       => '1',

@@ -1,3 +1,4 @@
+include nagios::params
 nagios::resource::contact { 'jdoe':
   alias                         => 'John Doe',
   host_notifications_enabled    => '1',

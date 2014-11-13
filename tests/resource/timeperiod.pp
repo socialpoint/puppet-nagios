@@ -1,3 +1,4 @@
+include nagios::params
 nagios::resource::timeperiod { 'workhours':
   alias     => 'Non-Work Hours',
   monday    => '00:00-09:00,17:00-24:00',

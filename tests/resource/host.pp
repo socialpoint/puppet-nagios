@@ -1,3 +1,4 @@
+include nagios::params
 nagios::resource::host { 'generic-host':
   notifications_enabled        => '1',
   event_handler_enabled        => '1',
