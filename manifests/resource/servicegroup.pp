@@ -11,7 +11,7 @@ define nagios::resource::servicegroup (
 ) {
 
   $resource_hash = {
-    "${name}"                => {
+    "servicegroup-${name}"                => {
       'ensure'               => $ensure,
       'action_url'           => $action_url,
       'servicegroup_alias'   => $servicegroup_alias,

@@ -61,7 +61,7 @@ define nagios::resource::contact (
     'service_notifications_enabled' => $service_notifications_enabled,
     'use'                           => $use,
   })
-  $resource_hash = { "${name}" => $resource_values }
+  $resource_hash = { "contact-${name}" => $resource_values }
 
   if $exported {
     @@nagios::resource { "contact-${name}":

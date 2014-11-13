@@ -106,7 +106,7 @@ define nagios::resource::host (
     'statusmap_image'              => $statusmap_image,
     'vrml_image'                   => $vrml_image,
   })
-  $resource_hash = { "${name}" => $resource_values }
+  $resource_hash = { "host-${name}" => $resource_values }
 
   if $exported {
     @@nagios::resource { "host-${name}":

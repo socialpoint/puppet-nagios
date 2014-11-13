@@ -7,11 +7,11 @@ define nagios::resource::command (
 ) {
 
   $resource_hash = {
-    "${name}"        => {
-      'ensure'       => $ensure,
-      'command_line' => $command_line,
-      'poller_tag'   => $poller_tag,
-      'use'          => $use,
+    "command-${name}" => {
+      'ensure'        => $ensure,
+      'command_line'  => $command_line,
+      'poller_tag'    => $poller_tag,
+      'use'           => $use,
     }
   }
 
