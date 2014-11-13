@@ -64,7 +64,7 @@ define nagios::resource::service (
   $check_command_name = split($check_command, '[\!\ ]')
 
   $real_check_command = $nrpe ? {
-    true    => "check_nrpe!${check_command_name[0]}",
+    true    => "check_nrpe!${name}",
     default => $check_command,
   }
 
@@ -167,7 +167,7 @@ define nagios::resource::service (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => "command[${check_command_name[0]}]=${sudo_command}${plugins_dir}/${check_command}\n",
+      content => "command\[${name}]=${sudo_command}${plugins_dir}/${check_command}\n",
       require => Package[$nrpe_package],
       notify  => Service[$nrpe_service],
     }
