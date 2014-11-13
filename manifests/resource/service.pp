@@ -61,6 +61,8 @@ define nagios::resource::service (
   $stalking_options = undef,
 ) {
 
+  include nagios::params
+
   $check_command_name = split($check_command, '[\!\ ]')
 
   $real_check_command = $nrpe ? {
