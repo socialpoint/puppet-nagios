@@ -10,7 +10,7 @@ define nagios::resource::contactgroup (
 ) {
 
   $resource_hash = {
-    "contactgroup-${name}"   => {
+    "${name}"                => {
       'ensure'               => $ensure,
       'alias'                => $contacgroup_alias,
       'contactgroup_members' => $contactgroup_members,

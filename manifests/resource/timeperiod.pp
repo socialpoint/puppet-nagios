@@ -16,7 +16,7 @@ define nagios::resource::timeperiod (
 ) {
 
   $resource_hash = {
-    "timeperiod-${name}"     => {
+    "${name}"     => {
       'ensure'    => $ensure,
       'alias'     => $timeperiod_alias,
       'exclude'   => $exclude,

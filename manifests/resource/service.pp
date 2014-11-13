@@ -122,7 +122,7 @@ define nagios::resource::service (
     'stalking_options'             => $stalking_options,
     'use'                          => $use,
   })
-  $resource_hash = { "service-${name}" => $resource_values }
+  $resource_hash = { "${name}" => $resource_values }
 
   if $exported {
     @@nagios::resource { "service-${name}":
