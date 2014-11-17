@@ -1,4 +1,4 @@
-define puppet-nagios::resource::hostgroup (
+define nagios::resource::hostgroup (
   $ensure = 'present',
 
   $action_url = undef,
