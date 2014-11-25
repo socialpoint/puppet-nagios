@@ -3,6 +3,9 @@ class nagios::params {
   $nagios_version = 'present'
   $broker_modules = []
   $manage_htpasswd = true
+  $authorized_for_system_information = 'nagiosadmin'
+  $authorized_for_configuration_information = 'nagiosadmin'
+  $authorized_for_system_commands = 'nagiosadmin'
   $authorized_for_all_services = 'nagiosadmin'
   $authorized_for_all_hosts = 'nagiosadmin'
 
