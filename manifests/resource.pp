@@ -6,7 +6,7 @@ define nagios::resource (
 ) {
 
   $resourcetype_name = delete($type, 'nagios_')
-  $resource_name = delete($name, "${resourcetype_name}-")
+  $resource_name = regsubst($name, "^(${resourcetype_name}-)(.*)", '\2')
   $target_name = uriescape(strip($name))
   $target = "${::nagios::params::nagios_resource_dir}/${resourcetype_name}/${target_name}.cfg"
 
