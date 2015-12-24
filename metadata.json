@@ -13,12 +13,12 @@
     "operatingsystem": "Ubuntu",
     "operatingsystemrelease": [ "14.04" ]
     }
-   ]
+   ],
   "dependencies": [
     { "name": "puppetlabs/ini_file", "version_requirement": ">=1.1.4" },
     { "name": "puppetlabs/stdlib", "version_requirement": ">=4.3.2" },
-    { "name": "leinaddm/htpasswd", "version_requirement": ">=0.0.3" }
-    { "name": "puppetlabs/apache", "version_requirement": ">=1.1.1" }
+    { "name": "leinaddm/htpasswd", "version_requirement": ">=0.0.3" },
+    { "name": "puppetlabs/apache", "version_requirement": ">=1.1.1" },
     { "name": "saz/sudo", "version_requirement": ">=3.0.6" }
   ]
 }
