@@ -15,6 +15,7 @@ class nagios (
   $nagios_spool_dir = $::nagios::params::nagios_spool_dir,
   $nagios_htdocs_dir = $::nagios::params::nagios_htdocs_dir,
   $nagios_external_cmd_dir = $::nagios::params::nagios_external_cmd_dir,
+  $nagios_enable_environment_macros = $::nagios::params::nagios_enable_environment_macros,
   $plugins_dir = $::nagios::params::plugins_dir,
   $authorized_for_system_information = $::nagios::params::authorized_for_system_information,
   $authorized_for_configuration_information = $::nagios::params::authorized_for_configuration_information,

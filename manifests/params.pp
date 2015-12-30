@@ -23,6 +23,7 @@ class nagios::params {
     $nagios_log_dir = '/var/log/nagios3'
     $nagios_cache_dir = '/var/cache/nagios3'
     $nagios_lib_dir = '/usr/lib/nagios3'
+    $nagios_enable_environment_macros = '1'
     $nagios_varlib_dir = '/var/lib/nagios3'
     $nagios_run_dir = '/var/run/nagios3'
     $nagios_spool_dir = "${nagios_varlib_dir}/spool"
