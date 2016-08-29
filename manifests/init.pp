@@ -209,12 +209,40 @@ class nagios (
 
   ### Default configuration
 
-  nagios::resource_hash::contact { $default_contacts: }
-  nagios::resource_hash::contactgroup { $default_contactgroups: }
-  nagios::resource_hash::host { $default_hosts: }
-  nagios::resource_hash::service { $default_services: }
-  nagios::resource_hash::hostgroup { $default_hostgroups: }
-  nagios::resource_hash::timeperiod { $default_timeperiods: }
-  nagios::resource_hash::command { $default_commands: }
+  $default_contacts.each | $key, $value | {
+    nagios::resource_hash::contact { $key:
+      config => $value,
+    }
+  }
+  $default_contactgroups.each | $key, $value | {
+    nagios::resource_hash::contactgroup { $key:
+      config => $value,
+    }
+  }
+  $default_hosts.each | $key, $value | {
+    nagios::resource_hash::host { $key:
+      config => $value,
+    }
+  }
+  $default_services.each | $key, $value | {
+    nagios::resource_hash::service { $key:
+      config => $value,
+    }
+  }
+  $default_hostgroups.each | $key, $value | {
+    nagios::resource_hash::hostgroup { $key:
+      config => $value,
+    }
+  }
+  $default_timeperiods.each | $key, $value | {
+    nagios::resource_hash::timeperiod { $key:
+      config => $value,
+    }
+  }
+  $default_commands.each | $key, $value | {
+    nagios::resource_hash::command { $key:
+      config => $value,
+    }
+  }
 
 }

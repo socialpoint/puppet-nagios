@@ -1,10 +1,12 @@
-define nagios::resource_hash::hostgroup {
+define nagios::resource_hash::hostgroup (
+  $config = {},
+){
 
-  $names = split(inline_template('<%= @name.keys.join(\',\') %>'), ',')
+  $resource_hash = { $name => $config }
 
-  nagios::resource { $names:
+  nagios::resource { $name:
     type          => 'nagios_hostgroup',
-    resource_hash => $name,
+    resource_hash => $resource_hash,
   }
 
 }

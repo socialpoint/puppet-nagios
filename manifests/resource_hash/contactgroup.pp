@@ -1,10 +1,12 @@
-define nagios::resource_hash::contactgroup {
+define nagios::resource_hash::contactgroup (
+  $config = {},
+){
 
-  $names = split(inline_template('<%= @name.keys.join(\',\') %>'), ',')
+  $resource_hash = { $name => $config }
 
-  nagios::resource { $names:
+  nagios::resource { $name:
     type          => 'nagios_contactgroup',
-    resource_hash => $name,
+    resource_hash => $resource_hash,
   }
 
 }

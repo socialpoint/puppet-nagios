@@ -1,10 +1,12 @@
-define nagios::resource_hash::hostdependency {
+define nagios::resource_hash::hostdependency (
+  $config = {},
+){
 
-  $names = split(inline_template('<%= @name.keys.join(\',\') %>'), ',')
+  $resource_hash = { $name => $config }
 
-  nagios::resource { $names:
+  nagios::resource { $name:
     type          => 'nagios_hostdependency',
-    resource_hash => $name,
+    resource_hash => $resource_hash,
   }
 
 }
