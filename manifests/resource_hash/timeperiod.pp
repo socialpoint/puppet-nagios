@@ -9,6 +9,4 @@ define nagios::resource_hash::timeperiod (
     resource_hash => $resource_hash,
   }
 
-  notify { "RESOURCE_HASH ${name}: ${::resource_hash}": }
-
 }
